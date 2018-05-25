@@ -1,2 +1,2 @@
-## Grandes decisiones
-# toma las decisiones por ti.
+## Una Plantilla 
+# plantilla react-redux.
