@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppNotas from './componentes/AppNotas';
+import AppRouter from './routers/AppRouter';
+import { Provider } from 'react-redux';
+import Tienda from './tienda/Tienda';
 import 'normalize.css/normalize.css';
 import './estilos/styles.scss';
-// boleano, exit, MABG900927HDFNTR04, pueden ser suficientes, localStorage.setItem, getItem, 
-// removeItem, solo trabaja con datos string, parse & stringify, persistencia
-// se establece cuando se actualiza
 
+const tienda = Tienda();
 
-ReactDOM.render(<AppNotas/>, document.getElementById('app'));
+const jsx = (
+    <Provider 
+    store={tienda} 
+    >
+        <AppRouter />
+    </Provider>
+);
+
+ReactDOM.render(<AppRouter/>, document.getElementById('app'));
 
