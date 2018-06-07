@@ -1,15 +1,13 @@
 import { createStore, combineReducers,  applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';  
-import reducerLibros from '../reducers/reducerLibros';
-import reducerLibroActivo from '../reducers/reducerLibroActivo';  
+import rootReducer from '../reducers/index';
 
 const componePotencia = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
 // reducer general
 export default () => {
     const tienda = createStore(
         combineReducers({ 
-            libros: reducerLibros,
-            libroActivo: reducerLibroActivo
+            rootReducer
         }),
         applyMiddleware(thunk)
     ); return tienda;
