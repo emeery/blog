@@ -2,6 +2,8 @@ import React from 'react';
 import {
 BrowserRouter, Switch, Route, Link, NavLink } from 'react-router-dom';
 import App from '../componentes/App';
+import Oye from '../componentes/Oye';
+
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -11,7 +13,13 @@ const AppRouter = () => (
             path="/" 
             component={App} 
             exact={true} 
-        /> </Switch>
+            /> 
+            <Route 
+            path="/oye" 
+            component={Oye} 
+             
+            /> 
+        </Switch>
     </div>
     </BrowserRouter>
 ); 
