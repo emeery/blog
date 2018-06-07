@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "blog",
+=======
+  "name": "un-redux",
+>>>>>>> e6724df890954b48427626a73f799023361fde5a
   "version": "1.0.0",
   "main": "index.js",
   "author": "Gerardo Bautista",
