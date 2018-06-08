@@ -1,26 +1,14 @@
 import React from 'react';
 import {
 BrowserRouter, Switch, Route, Link, NavLink } from 'react-router-dom';
-import App from '../componentes/App';
-import Oye from '../componentes/Oye';
-
-
+import Blog from '../componentes/Blog';
+import ListaPost from '../componentes/ListaPost';
 const AppRouter = () => (
     <BrowserRouter>
-    <div>
-        <Switch>
-            <Route 
-            path="/" 
-            component={App} 
-            exact={true} 
-            /> 
-            <Route 
-            path="/oye" 
-            component={Oye} 
-             
-            /> 
-        </Switch>
-    </div>
+        <div>
+            <Route path="/" component={Blog} exact={true}/>
+            <Route path="/ayuda" component={ListaPost}/>
+        </div>    
     </BrowserRouter>
-); 
-export default AppRouter;
+)
+export default AppRouter

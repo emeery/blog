@@ -1,11 +1,10 @@
 import React from 'react';
-class App extends React.Component {
+class Blog extends React.Component {
     render() { 
         return(<div>
-            <p>Boilerplate</p>
+            <p>Blog</p>
             </div>
         )
     }
 }
- 
-export default App;
+export default Blog;

@@ -9,29 +9,11 @@ import './estilos/styles.scss';
 
 const tienda = Tienda();
 
-const Escritorio = () => (<div>
-    dashboard
-    </div>
-)
-
-const Ayuda = () => (<div>
-    Ayuda
-    </div>
-)
-
 const jsx = (
     <Provider 
     store={tienda} 
     >
-    
-        <BrowserRouter>
-        <div>
-            <Route path="/" component={Escritorio} exact={true}/>
-            <Route path="/ayuda" component={Ayuda}/>
-        </div>    
-        </BrowserRouter>
-    
-        
+        <AppRouter/>        
     </Provider>
 );
 
