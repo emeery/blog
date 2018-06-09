@@ -7,7 +7,7 @@ const AppRouter = () => (
     <BrowserRouter>
         <div>
             <Route path="/" component={Blog} exact={true}/>
-            <Route path="/ayuda" component={ListaPost}/>
+            <Route path="/post" component={ListaPost}/>
         </div>    
     </BrowserRouter>
 )

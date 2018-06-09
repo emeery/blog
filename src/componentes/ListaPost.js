@@ -1,11 +1,13 @@
 import React from 'react';
+import {connect } from 'react-redux';
+import {cargaPost} from '../acciones/index';
 class ListaPost extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
+    componentWillMount() {
+        this.props.fetchPost();
+     }
     render() { 
         return (<div>ListaPost</div>)
     }
 }
-export default ListaPost;
+
+export default connect(null, {fetchPost: cargaPost})(ListaPost);

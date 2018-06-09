@@ -1,19 +1,20 @@
 import axios from 'axios';
 
-const URL = '//reduxblog.herokuapp.com/api';
-const API_KEY = '1234557';
+export const FETCH_POST = 'FETCH_POST';
 
-export function cargaPost() {
-    UNA_URL = `${URL}/posts${API_KEY}`;
-    const sol = axios.get(UNA_URL);
+const URL = 'http://reduxblog.herokuapp.com/api/posts';
+//const API_KEY = '1234557';
+//const UNA_URL = `${URL}/posts${API_KEY}`;
+export function cargaPost () {
+    const solicitud = axios.get(URL)
+    .then( res => {
+        console.log(res)
+    })
     return {
-        type: 'FETCH_POST',
-        payload: sol
-    }
+        type: FETCH_POST,
+        payload: solicitud
+    }      
 }
 
-// export const fetchPost = (post) => ({
-//     type: 'FETCH_POST',
-//     post
-// });
+
 
