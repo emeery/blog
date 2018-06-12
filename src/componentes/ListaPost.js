@@ -1,12 +1,29 @@
 import React from 'react';
 import {connect } from 'react-redux';
 import {cargaPost} from '../acciones/index';
+import {Link} from 'react-router-dom';
 class ListaPost extends React.Component {
     componentWillMount() {
         this.props.fetchPost();
      }
     render() { 
-        return (<div>ListaPost</div>)
+        return (
+            <div>
+                <p className="text-right">
+                    <Link
+                    to="/post/new" 
+                    >
+                    <button 
+                    type="button" 
+                    className="btn btn-info">
+                    Nuevo Post
+                    </button>
+                    
+                    </Link>
+                </p>
+                Lista de post
+            </div>
+        )
     }
 }
 

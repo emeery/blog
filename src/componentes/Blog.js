@@ -2,7 +2,7 @@ import React from 'react';
 class Blog extends React.Component {
     render() { 
         return(<div>
-            <p>Blog</p>
+            <h2>Blog</h2>
             </div>
         )
     }
