@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
 import {crearPost} from '../acciones/index';
+import {connect} from 'react-redux';
 class NuevoPost extends React.Component {
     onSubmit(props) {
 		this.props.crearPost(props)
@@ -8,14 +9,15 @@ class NuevoPost extends React.Component {
 				// blog post has been created navigate user to index
 				// we navigate by calling this.context.router.push with new path
 				// to navigate to
-				t//his.context.router.push('/');
+				//t//his.context.router.push('/');
 			});
 	}
     render() { 
         const {handleSubmit} = this.props;
         const {fields: {titulo, categoria, contenido} } = this.props;
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <form onSubmit={
+                handleSubmit(this.onSubmit.bind(this))}>
                 <h3>Crea un nuevo Post.</h3>
                 <div className='form-group'>
                     <label 
@@ -55,46 +57,27 @@ class NuevoPost extends React.Component {
         )
     }
 }
- 
+
+function validate(values) {
+	const errors = {};
+
+	if(!values.titulo) {
+		errors.titulo = 'Enter a title'
+	}
+
+	if(!values.categoria) {
+		errors.categoria = 'Enter Categories'
+	}
+
+	if(!values.contenido) {
+		errors.contenido = 'Enter Content'
+	}
+
+	return errors;
+}
+
 export default reduxForm({
  form: 'nuevoPost', // nombre unico para esta forma 
- fields: ['titulo', 'categoria', 'contenido']
-}, null, {crearPost})(NuevoPost);
-
-// import React from 'react';
-// import {reduxForm} from 'redux-form';
-// import {crearPost} from '../acciones/index';
-// class NuevoPost extends React.Component {
-//  onSubmit = (fields) =<div>{
-//  this.props.crearPost(fields)
-//  .then(() => {
-//  browserHistory.push('/');
-//  });
-//  }
-//  render() { 
-//  const {handleSubmit} = this.props;
-//  const {fields: {titulo, categoria, contenido} } = this.props;
- 
-//  return (
-//     <form onSubmit={handleSubmit(this.onSubmit)}>
-        
-//         <h3>Crea un nuevo Post.</h3>
-//         <div className='form-group'>
-//         <label 
-        
-//         >titulo</label>
-//         <input 
-//         type='text' 
-//         className='form-control'
-//         {...titulo}
-//         />
-//         </div>
-//     </form>
-//     )
-//  }
-// }
-// // 1sr - reduxForm, 2nd - mapStateToProps, 3rd - mapDispatch
-// export default reduxForm({
-//  form: 'Post_Forma', // nombre unico para esta forma 
-//  fields: ['titulo', 'categoria', 'contenido']
-// }, null, {crearPost: crearPost})(NuevoPost);
+ fields: ['titulo', 'categoria', 'contenido'],
+ validate
+})(connect(null, { crearPost })(NuevoPost));
