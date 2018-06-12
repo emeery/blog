@@ -4,7 +4,6 @@ export const FETCH_POST = 'FETCH_POST';
 export const CREAR_POST = 'CREAR_POST';
 const URL = 'http://reduxblog.herokuapp.com/api';
 const API_KEY = '1234557';
-//const UNA_URL = `${URL}/posts${API_KEY}`;
 
 // ListaPost
 export function cargaPost () {
@@ -17,14 +16,11 @@ export function cargaPost () {
         payload: solicitud
     }      
 }
-
 // NuevoPost
 export function crearPost (props) {
-    const solicitud = axios.get(`${URL}/posts${API_KEY}`)
+    const solicitud = axios.post(
+        `${URL}/posts${API_KEY}`, props);
     
-    .then( res => {
-        console.log(res)
-    })
     return {
         type: CREAR_POST,
         payload: solicitud
