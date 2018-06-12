@@ -3,6 +3,7 @@ import {reduxForm} from 'redux-form';
 import {crearPost} from '../acciones/index';
 class NuevoPost extends React.Component {
     onSubmit = (e) => {
+        //e.preventDefault();
         this.props.crearPost(e);
         // .then(() => {
         //   browserHistory.push('/');
@@ -46,17 +47,17 @@ class NuevoPost extends React.Component {
                         type='text'  
                         className='form-control'
                         {...contenido} />
-                        <button 
+                    </div>
+                    <button 
                         type="submit" 
                         className="btn btn-info"
-                        >Info</button>
-                    </div>
+                    > Info</button>
                 </form>
             )
     }
 }
 // 1sr - reduxForm, 2nd - mapStateToProps, 3rd - mapDispatch
 export default reduxForm({
-    form: 'Post_Forma', // nombre unico para esta forma 
+    form: 'unpost', // nombre unico para esta forma 
     fields: ['titulo', 'categoria', 'contenido']
 }, null, {crearPost: crearPost})(NuevoPost);
