@@ -3,16 +3,14 @@ import { reduxForm } from 'redux-form';
 import {crearPost} from '../acciones/index';
 import {connect} from 'react-redux';
 class NuevoPost extends React.Component {
-    onSubmit(e) {
-        this.props.crearPost(e)
-        .then(() => {
-            this.props.history.push('/');
-        });
-			
+    onSubmit(values) {
+        this.props.crearPost(values)			
 	}
     render() { 
-        const {handleSubmit} = this.props;
-        const {fields: {title, categories, content} } = this.props;
+        
+        const {fields: {
+            title, categories, content} , 
+            handleSubmit } = this.props;
         return (
             <form onSubmit={
                 handleSubmit(this.onSubmit.bind(this))}>
