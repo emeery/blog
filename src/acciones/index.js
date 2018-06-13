@@ -17,10 +17,11 @@ export function cargaPost () {
     }      
 }
 // NuevoPost
-export function crearPost (props) {
-    const solicitud = axios.post(
-        `${URL}/posts${API_KEY}`, props);
-    
+export function crearPost (valores, res) {
+    const solicitud = axios
+    .post(`${URL}/posts?${API_KEY}`, valores)
+    .then(() => res())
+    //.then( res => console.log(res))
     return {
         type: CREAR_POST,
         payload: solicitud

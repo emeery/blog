@@ -3,18 +3,16 @@ import { reduxForm } from 'redux-form';
 import {crearPost} from '../acciones/index';
 import {connect} from 'react-redux';
 class NuevoPost extends React.Component {
-    onSubmit(props) {
-		this.props.crearPost(props)
-			.then(() => {
-				// blog post has been created navigate user to index
-				// we navigate by calling this.context.router.push with new path
-				// to navigate to
-				//t//his.context.router.push('/');
-			});
+    onSubmit(e) {
+        this.props.crearPost(e)
+        .then(() => {
+            this.props.history.push('/');
+        });
+			
 	}
     render() { 
         const {handleSubmit} = this.props;
-        const {fields: {titulo, categoria, contenido} } = this.props;
+        const {fields: {title, categories, content} } = this.props;
         return (
             <form onSubmit={
                 handleSubmit(this.onSubmit.bind(this))}>
@@ -25,7 +23,7 @@ class NuevoPost extends React.Component {
                     <input 
                     type='text' 
                     className='form-control'
-                    {...titulo}
+                    {...title}
                     />
                 </div>
 
@@ -35,7 +33,7 @@ class NuevoPost extends React.Component {
                     <input 
                     type='text' 
                     className='form-control'
-                    {...categoria}
+                    {...categories}
                     />
                 </div>
 
@@ -45,7 +43,7 @@ class NuevoPost extends React.Component {
                     <textarea 
                     type='text' 
                     className='form-control'
-                    {...contenido}
+                    {...content}
                     />
                 </div>
                 <button 
@@ -61,16 +59,16 @@ class NuevoPost extends React.Component {
 function validate(values) {
 	const errors = {};
 
-	if(!values.titulo) {
-		errors.titulo = 'Enter a title'
+	if(!values.title) {
+		errors.title = 'Enter a title'
 	}
 
-	if(!values.categoria) {
-		errors.categoria = 'Enter Categories'
+	if(!values.categories) {
+		errors.categories = 'Enter Categories'
 	}
 
-	if(!values.contenido) {
-		errors.contenido = 'Enter Content'
+	if(!values.content) {
+		errors.content = 'Enter Content'
 	}
 
 	return errors;
@@ -78,6 +76,6 @@ function validate(values) {
 
 export default reduxForm({
  form: 'nuevoPost', // nombre unico para esta forma 
- fields: ['titulo', 'categoria', 'contenido'],
+ fields: ['title', 'categories', 'content'],
  validate
 })(connect(null, { crearPost })(NuevoPost));

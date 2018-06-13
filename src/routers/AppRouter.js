@@ -13,13 +13,13 @@ const AppRouter = () => (
             exact={true}
             />
             <Route 
-            path="/post" 
+            path="/posts" 
             component={ListaPost}
             exact={true}
             />
             <Route 
             exact={true}
-            path="/post/new" 
+            path="/posts/new" 
             component={NuevoPost}
             />
         </div>    
