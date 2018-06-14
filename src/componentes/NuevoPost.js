@@ -1,5 +1,5 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import {crearPost} from '../acciones/index';
 import {connect} from 'react-redux';
 class NuevoPost extends React.Component {
@@ -18,30 +18,31 @@ class NuevoPost extends React.Component {
                 <div className='form-group'>
                     <label 
                     >titulo</label>
-                    <input 
+                    <Field
                     type='text' 
                     className='form-control'
-                    {...title}
+                    component={'input'}
+                    name="title"
                     />
                 </div>
 
                 <div className='form-group'>
                     <label 
                     >Categoria</label>
-                    <input 
+                    <Field
                     type='text' 
                     className='form-control'
-                    {...categories}
+                    component={'input'}
+                    name="categories"
                     />
                 </div>
 
                 <div className='form-group'>
                     <label 
                     >Contenido</label>
-                    <textarea 
-                    type='text' 
-                    className='form-control'
-                    {...content}
+                    <Field 
+                    name="content" 
+                    component="textarea" 
                     />
                 </div>
                 <button 
