@@ -3,48 +3,63 @@ import { reduxForm, Field } from 'redux-form';
 import {crearPost} from '../acciones/index';
 import {connect} from 'react-redux';
 class NuevoPost extends React.Component {
+    state = {error: ''}
     onSubmit(values) {
-        this.props.crearPost(values)			
-	}
+        this.props.crearPost(values);
+        			
+    }
+  
     render() { 
         
         const {fields: {
             title, categories, content} , 
             handleSubmit } = this.props;
+            // meta.touched : boolean
         return (
             <form onSubmit={
                 handleSubmit(this.onSubmit.bind(this))}>
                 <h3>Crea un nuevo Post.</h3>
-                <div className='form-group'>
-                    <label 
-                    >titulo</label>
-                    <Field
-                    type='text' 
-                    className='form-control'
-                    component={'input'}
-                    name="title"
-                    />
-                </div>
+                    
+                    
+                    <Field name="titulo" component={ field =>
+                        <div className='form-group'>
+                        <h4>Titulo</h4>
+                        <input {...field.input} 
+                        type="text" 
+                        className="form-control"
+                        />
+                            <div className="text-help">
+                            {field.meta.touched&&field.meta.error ? field.meta.error : ''}
+                            </div>
+                        </div>
+                    } />
 
-                <div className='form-group'>
-                    <label 
-                    >Categoria</label>
-                    <Field
-                    type='text' 
-                    className='form-control'
-                    component={'input'}
-                    name="categories"
-                    />
-                </div>
+                    <Field name="categoria" component={ field =>
+                        <div className='form-group'>
+                        <h4>Categoria</h4>
+                        <input {...field.input} 
+                        type="text" 
+                        className="form-control"
+                        />
+                            <div className="text-help">
+                            {field.meta.touched&&field.meta.error ? field.meta.error : ''}
+                            </div>
+                        </div>
+                    } />
 
-                <div className='form-group'>
-                    <label 
-                    >Contenido</label>
-                    <Field 
-                    name="content" 
-                    component="textarea" 
-                    />
-                </div>
+                    <Field name="contenido" component={ field =>
+                        <div className='form-group'>
+                        <h4>Contenido</h4>
+                        <textarea {...field.input} 
+                        type="text" 
+                        className="form-control"
+                        />
+                            <div className="text-help">
+                            {field.meta.touched&&field.meta.error ? field.meta.error : ''}
+                            </div>
+                        </div>
+                    } />
+                
                 <button 
                 type="submit" 
                 className="btn btn-info"
@@ -56,25 +71,23 @@ class NuevoPost extends React.Component {
 }
 
 function validate(values) {
-	const errors = {};
+	const error = {};
 
-	if(!values.title) {
-		errors.title = 'Enter a title'
+	if(!values.titulo) {
+		error.titulo = 'Ingresa un titulo'
+	}
+	if(!values.categoria) {
+		error.categoria = 'Ingresa una categoria'
+	}
+	if(!values.contenido) {
+		error.contenido = 'Ingresa contenido'
 	}
 
-	if(!values.categories) {
-		errors.categories = 'Enter Categories'
-	}
-
-	if(!values.content) {
-		errors.content = 'Enter Content'
-	}
-
-	return errors;
+	return error;
 }
 
 export default reduxForm({
  form: 'nuevoPost', // nombre unico para esta forma 
- fields: ['title', 'categories', 'content'],
- validate
+ fields: ['titulo', 'categoria', 'contenido'], // campos redux-form
+ validate // valida la entrada 
 })(connect(null, { crearPost })(NuevoPost));
