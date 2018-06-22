@@ -11,7 +11,7 @@ class ListaPost extends React.Component {
             <div>
                 <p className="text-right">
                     <Link
-                    to="/post/new" 
+                    to="/posts/new" 
                     >
                     <button 
                     type="button" 

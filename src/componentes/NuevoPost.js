@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { reduxForm, Field } from 'redux-form';
 import {crearPost} from '../acciones/index';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 class NuevoPost extends React.Component {
-    state = {error: ''}
+    
     onSubmit(values) {
         this.props.crearPost(values);
-        			
+        this.props.history.push('/posts');        
     }
   
     render() { 
@@ -16,6 +17,7 @@ class NuevoPost extends React.Component {
             handleSubmit } = this.props;
             // meta.touched : boolean
         return (
+            
             <form className="container"  
                 onSubmit={
                 handleSubmit(this.onSubmit.bind(this))}>
@@ -23,20 +25,14 @@ class NuevoPost extends React.Component {
                     
                 
                     <Field name="titulo" component={ field =>
-                        <div className='form-group'>
+                        <div className='form-group has-danger '>
                         <h4>Titulo</h4>
                         <input {...field.input} 
                         type="text" 
                         className="form-control is-valid" 
                         />
-                            <div 
-                            className="text-help"
-                            >
-                            <p
-                            style={{color:'grey', fontSize:'15px'}}
-                            >{field.meta.touched&&field.meta.error ? 
-                                field.meta.error : ''}</p>
-                            </div>
+                        <small className="form-text text-muted">{field.meta.touched&&field.meta.error ? 
+                            field.meta.error : ''}</small>
                         </div>
                     } />
 
@@ -49,14 +45,8 @@ class NuevoPost extends React.Component {
                         type="text" 
                         className="form-control"
                         />
-                            <div 
-                            className="text-help"
-                            >
-                            <p
-                            style={{color:'grey', fontSize:'15px'}}
-                            >{field.meta.touched&&field.meta.error ? 
-                                field.meta.error : ''}</p>
-                            </div>
+                        <small className="form-text text-muted">{field.meta.touched&&field.meta.error ? 
+                            field.meta.error : ''} </small>
                         </div>
                     } />
 
@@ -67,24 +57,23 @@ class NuevoPost extends React.Component {
                         type="text" 
                         className="form-control"
                         />
-                            <div 
-                            className="text-help"
-                            >
-                            <p
-                            style={{color:'grey', fontSize:'15px'}}
-                            >{field.meta.touched&&field.meta.error ? 
-                                field.meta.error : ''}</p>
-                            </div>
+                        <small className="form-text text-muted">{field.meta.touched&&field.meta.error ? 
+                            field.meta.error : ''}</small>
                         </div>
                     } />
                 
-                <button 
+                
+                    <button 
                 type="submit" 
                 className="btn btn-info"
-                >Postear</button>
-                
+                >Postear</button>               
+                <Link 
+                style={{backgroundColor:'salmon', marginLeft:'5px'}}
+                to="/posts" type="button" className="btn btn-danger">
+                Cancelar</Link>
                 
             </form>
+            
         )
     }
 }
