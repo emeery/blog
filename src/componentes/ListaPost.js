@@ -6,6 +6,18 @@ class ListaPost extends React.Component {
     componentWillMount() {
         this.props.fetchPost();
      }
+     renderPosts() {
+        return this.props.posts.map((post) => {
+          return (
+            <li className="list-group-item" key={post.id}>
+              <Link to={"posts/" + post.id}>
+                <span className="float-right">{post.categories}</span>
+                <strong>{post.title}</strong>
+              </Link>
+            </li>
+          );
+        });
+    }
     render() { 
         return (
             <div>
@@ -21,10 +33,12 @@ class ListaPost extends React.Component {
                     
                     </Link>
                 </p>
-                Lista de post
+                {this.renderPosts()}
             </div>
         )
     }
 }
-
-export default connect(null, {fetchPost: cargaPost})(ListaPost);
+const mapStateToProps = (state) => {
+    return {posts: state.posts.todos }
+}
+export default connect(mapStateToProps, {fetchPost: cargaPost})(ListaPost);

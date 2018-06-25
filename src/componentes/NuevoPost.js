@@ -7,7 +7,7 @@ class NuevoPost extends React.Component {
     
     onSubmit(values) {
         this.props.crearPost(values);
-        this.props.history.push('/posts');        
+        this.props.history.push('/');        
     }
   
     render() { 
@@ -24,7 +24,7 @@ class NuevoPost extends React.Component {
                 <h3>Crea un nuevo Post.</h3>
                     
                 
-                    <Field name="titulo" component={ field =>
+                    <Field name="title" component={ field =>
                         <div className='form-group has-danger '>
                         <h4>Titulo</h4>
                         <input {...field.input} 
@@ -36,7 +36,7 @@ class NuevoPost extends React.Component {
                         </div>
                     } />
 
-                    <Field name="categoria" component={ field =>
+                    <Field name="categories" component={ field =>
                         <div className='form-group'
                         
                         >
@@ -50,7 +50,7 @@ class NuevoPost extends React.Component {
                         </div>
                     } />
 
-                    <Field name="contenido" component={ field =>
+                    <Field name="content" component={ field =>
                         <div className='form-group'>
                         <h5>Contenido</h5>
                         <textarea {...field.input} 
@@ -81,14 +81,14 @@ class NuevoPost extends React.Component {
 function validate(values) {
 	const error = {};
 
-	if(!values.titulo) {
-		error.titulo = 'Ingresa un titulo'
+	if(!values.title) {
+		error.title = 'Ingresa un titulo'
 	}
-	if(!values.categoria) {
-		error.categoria = 'Ingresa una categoria'
+	if(!values.categories) {
+		error.categories = 'Ingresa una categoria'
 	}
-	if(!values.contenido) {
-		error.contenido = 'Ingresa contenido'
+	if(!values.content) {
+		error.content = 'Ingresa contenido'
 	}
 
 	return error;
@@ -96,7 +96,7 @@ function validate(values) {
 
 export default reduxForm({
  form: 'nuevoPost', // nombre unico para esta forma 
- fields: ['titulo', 'categoria', 'contenido'], // campos redux-form
+ fields: ['title', 'categories', 'content'], // campos redux-form
  validate // valida la entrada 
 })(connect(null, { crearPost })(NuevoPost));
 

@@ -7,13 +7,9 @@ import NuevoPost from '../componentes/NuevoPost';
 const AppRouter = () => (
     <BrowserRouter>
         <div>
+            
             <Route 
             path="/" 
-            component={Blog} 
-            exact={true}
-            />
-            <Route 
-            path="/posts" 
             component={ListaPost}
             exact={true}
             />

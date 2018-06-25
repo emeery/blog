@@ -8,7 +8,7 @@ const componePotencia = window.__REDUX_DEVTOOLS_EXTENSION__ || compose;
 export default () => {
     const tienda = createStore(
         combineReducers({ 
-            post: postReducer,
+            posts: postReducer,
             form: formReducer
         }),
         applyMiddleware(thunk)
