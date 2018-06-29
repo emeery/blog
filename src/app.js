@@ -4,7 +4,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
 import Tienda from './tienda/Tienda';
-//import {fetchPost} from './acciones/index';
+
 import 'normalize.css/normalize.css';
 import './estilos/styles.scss';
 
